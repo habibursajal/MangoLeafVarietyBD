@@ -22,6 +22,13 @@ To replicate the experimental environment and ensure all dependencies are correc
    cd MangoLeafVarietyBD
 
 
+2. **Install dependencies:**
+It is recommended to use a virtual environment or Google Colab/Kaggle. Install the required packages using the provided requirements.txt file:
+   ```bash
+   pip install -r requirements.txt
+
+
+
 ## 📂 Repository Structure & Workflow
 
 To ensure high reproducibility and minimize computational overhead, the experimental workflow is modularized into two distinct phases:
