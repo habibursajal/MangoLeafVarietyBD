@@ -1,11 +1,16 @@
 # MangoLeafVarietyBD: Code & Baseline Evaluation 🥭
 
-[![Dataset](https://img.shields.io/badge/Dataset-Mendeley_Data-blue)](#)
+[![Dataset](https://img.shields.io/badge/Dataset-Mendeley_Data-blue)](https://doi.org/10.17632/hb3kvgfcvm.2)
 [![Python](https://img.shields.io/badge/Python-3.12+-yellow)](#)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.9.0-ee4c2c)](#)
 [![License](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey)](#)
 
-This repository contains the official codebase for data preprocessing, augmentation, and baseline model evaluation associated with the **MangoLeafVarietyBD** dataset. The dataset comprises high-resolution images of eight distinct mango leaf varieties collected from diverse geographical regions in Bangladesh (Thakurgaon and Savar) to facilitate robust computer vision applications in precision agriculture.
+This repository contains the official codebase for data preprocessing, augmentation, and baseline model evaluation associated with the **MangoLeafVarietyBD** dataset. 
+
+The dataset comprises high-resolution images of **8 distinct mango leaf varieties** collected in Bangladesh:
+`Amrupali`, `Banana`, `Bandigori`, `Brunei King`, `Harivanga`, `Himsagor`, `Kacha Mitha`, and `Surjapuri`.
+
+---
 
 ## 📂 Repository Structure & Workflow
 
@@ -14,13 +19,32 @@ To ensure high reproducibility and resource efficiency, the experimental workflo
 ### 1. `01_Data_Preprocessing_and_Augmentation_Colab.ipynb`
 * **Execution Environment:** Google Colab
 * **Purpose:** Handles initial data parsing, background removal, and dynamic data augmentation.
-* **Details:** Utilizes the `Albumentations` library to simulate real-world field variability (e.g., random perspective, color jitter, gaussian blur, and random erasing).
+* **Applied Augmentations (on-the-fly):** `RandomResizedCrop`, `RandomHorizontalFlip`, `RandomVerticalFlip`, `RandomRotation (90°)`, `RandomPerspective`, `ColorJitter`, `RandomGrayscale`, `GaussianBlur`, and `RandomErasing`.
 * **Output:** Expands the raw dataset from **2,744 original images** to a robust training pool of **19,208 augmented images**.
 
 ### 2. `02_Model_Training_and_Evaluation_Kaggle.ipynb`
 * **Execution Environment:** Kaggle Cloud GPU (Hardware Accelerated)
-* **Purpose:** Trains and rigorously evaluates four state-of-the-art deep learning baseline models on the augmented dataset using a 80-10-10 stratified split.
-* **Techniques:** Implements Cosine Annealing Learning Rate, Label Smoothing, and Mixed Precision (`torch.amp.autocast`) for optimal convergence.
+* **Purpose:** Trains and rigorously evaluates four state-of-the-art deep learning baseline models using a stratified split (Train: 80%, Val: 10%, Test: 10%).
+
+---
+
+## ⚙️ Hyperparameters & Training Configuration
+
+To guarantee exact reproducibility, the specific training configurations used for the baseline models are documented below:
+
+* **Global Settings:** * Image Size: `224 x 224`
+  * Batch Size: `32`
+  * Max Epochs: `30`
+  * Early Stopping Patience: `7`
+  * Optimizer: `AdamW`
+  * LR Scheduler: `CosineAnnealingLR`
+  * Precision: `Mixed Precision (torch.amp.autocast)`
+
+* **Model-Specific Configurations:**
+  * **ViT-B16:** Learning Rate: `2e-4`, Weight Decay: `0.50`, Label Smoothing: `0.50`
+  * **DenseNet121:** Learning Rate: `1.4e-3`, Weight Decay: `0.50`, Label Smoothing: `0.50`
+  * **GhostNetV2:** Learning Rate: `5e-5`, Weight Decay: `0.30`, Label Smoothing: `0.40`
+  * **ResNet18:** Learning Rate: `1e-4`, Weight Decay: `0.0`, Label Smoothing: `0.0`
 
 ---
 
@@ -41,21 +65,18 @@ The evaluation demonstrates strong discriminative capabilities across all eight 
 
 ## 🚀 How to Reproduce
 
-1. **Obtain the Dataset:** Download the raw image dataset from the official [Mendeley Data Repository](#) *(Link will be updated upon publication)*.
-2. **Preprocess:** Open `01_Data_Preprocessing_and_Augmentation_Colab.ipynb` in Google Colab. Mount your drive, point the paths to the downloaded raw dataset, and run all cells to generate the augmented images.
-3. **Train Models:** Upload the generated augmented dataset to a Kaggle environment. Execute `02_Model_Training_and_Evaluation_Kaggle.ipynb` to reproduce the model weights, accuracy metrics, confusion matrices, and loss curves.
+1. **Obtain the Dataset:** Download the raw image dataset from the official [Mendeley Data Repository (V2)](https://doi.org/10.17632/hb3kvgfcvm.2).
+2. **Preprocess:** Open `01_Data_Preprocessing...` in Google Colab. Mount your drive, point the paths to the downloaded raw dataset, and run all cells to generate the augmented images.
+3. **Train Models:** Upload the generated augmented dataset to a Kaggle environment. Execute `02_Model_Training...` to reproduce the model weights, accuracy metrics, confusion matrices, and loss curves.
 
 ## 📈 Evaluation Results
 The generated visualizations, including the **Confusion Matrices** and **Loss/Accuracy Curves** for the evaluated models, can be found in the `Evaluation_Results` directory of this repository.
 
 ## 🛠️ Dependencies & Environment
-
-The codebase strictly adheres to the following dependencies to ensure reproducibility:
 * Python `3.12+`
 * PyTorch `2.9.0`
 * PyTorch Image Models (`timm`) `1.0.24`
-* Albumentations
-* Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn
+* Albumentations, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn
 
 ---
-*For any questions regarding the dataset or the baseline implementations, please refer to the corresponding data article.*
+*For any questions regarding the dataset or the baseline implementations, please refer to the corresponding data article: [MangoLeafVarietyBD (Mendeley Data)](https://doi.org/10.17632/hb3kvgfcvm.2)*
