@@ -1,0 +1,17 @@
+Model: GhostNetV2
+Accuracy: 0.9474
+========================================
+              precision    recall  f1-score   support
+
+    Amrupali     0.9761    0.9444    0.9600       216
+      Banana     0.9619    0.9228    0.9419       246
+   Bandigori     0.9871    0.9871    0.9871       232
+ Brunei King     0.9170    1.0000    0.9567       210
+   Harivanga     0.9457    0.9531    0.9494       256
+    Himsagor     0.9688    0.9079    0.9374       239
+ Kacha Mitha     0.9225    0.9506    0.9363       263
+   Surjapuri     0.9122    0.9228    0.9175       259
+
+    accuracy                         0.9474      1921
+   macro avg     0.9489    0.9486    0.9483      1921
+weighted avg     0.9482    0.9474    0.9474      1921

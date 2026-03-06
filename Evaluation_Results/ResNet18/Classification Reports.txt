@@ -1,0 +1,17 @@
+Model: ResNet18
+Accuracy: 0.9391
+========================================
+              precision    recall  f1-score   support
+
+    Amrupali     0.9849    0.9074    0.9446       216
+      Banana     0.9580    0.9268    0.9421       246
+   Bandigori     0.9955    0.9483    0.9713       232
+ Brunei King     0.9167    0.9952    0.9543       210
+   Harivanga     0.9593    0.9219    0.9402       256
+    Himsagor     0.8808    0.9582    0.9178       239
+ Kacha Mitha     0.9680    0.9202    0.9435       263
+   Surjapuri     0.8746    0.9421    0.9071       259
+
+    accuracy                         0.9391      1921
+   macro avg     0.9422    0.9400    0.9401      1921
+weighted avg     0.9417    0.9391    0.9394      1921

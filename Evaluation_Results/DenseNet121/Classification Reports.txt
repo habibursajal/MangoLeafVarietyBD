@@ -1,0 +1,17 @@
+Model: DenseNet121
+Accuracy: 0.9558
+========================================
+              precision    recall  f1-score   support
+
+    Amrupali     0.9901    0.9259    0.9569       216
+      Banana     0.9796    0.9756    0.9776       246
+   Bandigori     0.9741    0.9741    0.9741       232
+ Brunei King     0.9589    1.0000    0.9790       210
+   Harivanga     0.9609    0.9609    0.9609       256
+    Himsagor     0.9359    0.9163    0.9260       239
+ Kacha Mitha     0.9611    0.9392    0.9500       263
+   Surjapuri     0.8986    0.9575    0.9271       259
+
+    accuracy                         0.9558      1921
+   macro avg     0.9574    0.9562    0.9565      1921
+weighted avg     0.9565    0.9558    0.9558      1921
