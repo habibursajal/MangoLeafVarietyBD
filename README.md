@@ -14,37 +14,52 @@ The dataset comprises high-resolution images of **8 distinct mango leaf varietie
 
 ## 📂 Repository Structure & Workflow
 
-To ensure high reproducibility and resource efficiency, the experimental workflow is modularized into two distinct environments:
+To ensure absolute reproducibility and resource efficiency, the experimental workflow is modularized into two distinct phases:
 
 ### 1. `01_Data_Preprocessing_and_Augmentation_Colab.ipynb`
 * **Execution Environment:** Google Colab
-* **Purpose:** Handles initial data parsing, background removal, and dynamic data augmentation.
-* **Applied Augmentations (on-the-fly):** `RandomResizedCrop`, `RandomHorizontalFlip`, `RandomVerticalFlip`, `RandomRotation (90°)`, `RandomPerspective`, `ColorJitter`, `RandomGrayscale`, `GaussianBlur`, and `RandomErasing`.
-* **Output:** Expands the raw dataset from **2,744 original images** to a robust training pool of **19,208 augmented images**.
+* **Purpose:** Handles initial data parsing, background removal, and offline dataset expansion.
+* **Offline Augmentation:** Applies deterministic geometric and photometric transformations to simulate field conditions.
+* **Output:** Expands the raw dataset from **2,744 original images** to a robust static pool of **19,208 augmented images** for model training.
 
 ### 2. `02_Model_Training_and_Evaluation_Kaggle.ipynb`
 * **Execution Environment:** Kaggle Cloud GPU (Hardware Accelerated)
-* **Purpose:** Trains and rigorously evaluates four state-of-the-art deep learning baseline models using a stratified split (Train: 80%, Val: 10%, Test: 10%).
+* **Purpose:** Trains and rigorously evaluates four state-of-the-art deep learning baseline models.
+* **Data Splitting:** Stratified split ensuring uniform class distribution across sets -> Train: **80%**, Validation: **10%**, Test: **10%** (Random State/Seed: `42`).
+* **On-the-fly Augmentation (Training Only):** Dynamic real-time augmentations via `torchvision.transforms` to prevent overfitting:
+  * `RandomResizedCrop(224, scale=(0.7, 1.0))`
+  * `RandomHorizontalFlip(p=0.5)` & `RandomVerticalFlip(p=0.5)`
+  * `RandomRotation(degrees=90)`
+  * `RandomPerspective(distortion_scale=0.4, p=0.5)`
+  * `ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1)`
+  * `RandomGrayscale(p=0.1)`
+  * `GaussianBlur(kernel_size=(3, 3), sigma=(0.1, 2.0))`
+  * `RandomErasing(p=0.2, scale=(0.02, 0.2), ratio=(0.3, 3.3))`
+* **Normalization:** ImageNet standards `mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]` applied to all splits.
 
 ---
 
 ## ⚙️ Hyperparameters & Training Configuration
 
-To guarantee exact reproducibility, the specific training configurations used for the baseline models are documented below:
+To guarantee exact reproducibility, the `timm` library was utilized with the following exhaustive configurations:
 
-* **Global Settings:** * Image Size: `224 x 224`
-  * Batch Size: `32`
-  * Max Epochs: `30`
-  * Early Stopping Patience: `7`
-  * Optimizer: `AdamW`
-  * LR Scheduler: `CosineAnnealingLR`
-  * Precision: `Mixed Precision (torch.amp.autocast)`
+### Global Configuration
+* **Seed:** `42` (Enforced across PyTorch, NumPy, Random, and CuDNN deterministic algorithms)
+* **Image Size:** `224 x 224`
+* **Batch Size:** `32` (with `num_workers=4`)
+* **Max Epochs:** `30` (with Early Stopping Patience: `7`)
+* **Optimizer & Scheduler:** `AdamW` paired with `CosineAnnealingLR (T_max=30)`
+* **Loss Function:** `CrossEntropyLoss` utilizing **Dynamic Class Weighting** (`1. / np.bincount(train_labels)`) to mitigate natural class imbalances.
+* **Precision:** Mixed Precision (`torch.amp.autocast` & `GradScaler`)
+* **Pretrained Weights:** Enabled (`pretrained=True`) for all architectures.
 
-* **Model-Specific Configurations:**
-  * **ViT-B16:** Learning Rate: `2e-4`, Weight Decay: `0.50`, Label Smoothing: `0.50`
-  * **DenseNet121:** Learning Rate: `1.4e-3`, Weight Decay: `0.50`, Label Smoothing: `0.50`
-  * **GhostNetV2:** Learning Rate: `5e-5`, Weight Decay: `0.30`, Label Smoothing: `0.40`
-  * **ResNet18:** Learning Rate: `1e-4`, Weight Decay: `0.0`, Label Smoothing: `0.0`
+### Model-Specific Configurations
+Custom dense/classifier heads were added with specific dropout rates to prevent overfitting:
+
+* **ViT-B16:** * Dropout: `0.8` | Learning Rate: `2e-4` | Weight Decay: `0.50` | Label Smoothing: `0.50`
+* **DenseNet121:** * Dropout: `0.8` | Learning Rate: `1.4e-3` | Weight Decay: `0.50` | Label Smoothing: `0.50`
+* **GhostNetV2:** * Dropout: `0.8` | Learning Rate: `5e-5` | Weight Decay: `0.30` | Label Smoothing: `0.40`
+* **ResNet18:** * Dropout: `0.0` | Learning Rate: `1e-4` | Weight Decay: `0.0` | Label Smoothing: `0.0`
 
 ---
 
@@ -67,16 +82,18 @@ The evaluation demonstrates strong discriminative capabilities across all eight 
 
 1. **Obtain the Dataset:** Download the raw image dataset from the official [Mendeley Data Repository (V2)](https://doi.org/10.17632/hb3kvgfcvm.2).
 2. **Preprocess:** Open `01_Data_Preprocessing...` in Google Colab. Mount your drive, point the paths to the downloaded raw dataset, and run all cells to generate the augmented images.
-3. **Train Models:** Upload the generated augmented dataset to a Kaggle environment. Execute `02_Model_Training...` to reproduce the model weights, accuracy metrics, confusion matrices, and loss curves.
-
-## 📈 Evaluation Results
-The generated visualizations, including the **Confusion Matrices** and **Loss/Accuracy Curves** for the evaluated models, can be found in the `Evaluation_Results` directory of this repository.
+3. **Train Models:** Upload the generated augmented dataset to a Kaggle environment. Execute `02_Model_Training...`. 
+4. **Outputs:** The script automatically generates and saves the following artifacts for each model in the `All_outputs` directory:
+   * `best_model.pth` (Model weights)
+   * `training_logs.csv` (Epoch-wise loss/acc tracking)
+   * `report.txt` (Scikit-learn classification report)
+   * `cm.png` & `metrics.png` (Visualizations)
 
 ## 🛠️ Dependencies & Environment
 * Python `3.12+`
-* PyTorch `2.9.0`
+* PyTorch `2.9.0+cu126`
 * PyTorch Image Models (`timm`) `1.0.24`
-* Albumentations, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn
+* Albumentations, Scikit-learn, Pandas, NumPy, Pillow, Matplotlib, Seaborn
 
 ---
 *For any questions regarding the dataset or the baseline implementations, please refer to the corresponding data article: [MangoLeafVarietyBD (Mendeley Data)](https://doi.org/10.17632/hb3kvgfcvm.2)*
