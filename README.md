@@ -12,6 +12,16 @@ The dataset focuses on **8 distinct mango leaf varieties** from Bangladesh:
 
 ---
 
+## 🛠️ Installation & Environment Setup
+
+To replicate the experimental environment and ensure all dependencies are correctly installed, follow these steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/habibursajal/MangoLeafVarietyBD.git](https://github.com/habibursajal/MangoLeafVarietyBD.git)
+   cd MangoLeafVarietyBD
+
+
 ## 📂 Repository Structure & Workflow
 
 To ensure high reproducibility and minimize computational overhead, the experimental workflow is modularized into two distinct phases:
