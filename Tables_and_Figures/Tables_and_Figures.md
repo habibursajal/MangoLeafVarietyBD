@@ -51,25 +51,25 @@ This document contains all tables and figures used in the manuscript.
 
 ## Fig. 1: Examples of Eight Distinct Types of Original Mango Leaf Images
 
-![Fig1](Tables_and_Figures/Fig. 1. Examples of eight distinct types of original mango leaf images included in the dataset..png)
+![Fig1](Tables_and_Figures/Fig. 1. Examples of eight distinct types of original mango leaf images included in the dataset.png)
 
 ---
 
 ## Fig. 2: Structure of the Directory of the Dataset
 
-![Fig2](fig2_dataset_directory_structure.png)
+![Fig2](Tables_and_Figures/Fig. 2. Structure of the directory of the dataset.png)
 
 ---
 
 ## Fig. 3: Flowchart Showing the Data Preparation Steps
 
-![Fig3](fig3_data_preparation_flowchart.png)
+![Fig3](Tables_and_Figures/Fig. 3. Flowchart showing the data preparation steps.png)
 
 ---
 
 ## Fig. 4: Sample of Augmented Images of MangoLeafVarietyBD Dataset (for Experimental Model Training)
 
-![Fig4](fig4_augmented_images_sample.png)
+![Fig4](Tables_and_Figures/Fig. 4. Sample of augmented images of MangoLeafVarietyBD Dataset (for Experimental Model Training).png)
 
 ---
 
