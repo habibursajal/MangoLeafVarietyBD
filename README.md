@@ -111,7 +111,7 @@ The `Evaluation_Results/` directory contains per-model sub-folders with:
 The `Tables_and_Figures/` directory contains all tables and figures used in the manuscript of the MangoLeafVarietyBD dataset paper.  
 This includes visual examples of the dataset, directory structure, data preparation workflow, and sample augmented images used during model training.  
 
-A compiled document (`MangoLeafVarietyBD_Tables_and_Figures.docx`) is also provided for convenient access to all tables and figures in a single file.
+A compiled document (`MangoLeafVarietyBD_Tables_and_Figures.docx` or `MangoLeafVarietyBD_Tables_and_Figures.pdf`) is also provided for convenient access to all tables and figures in a single file.
 
 
 ## 🚀 Reproduction Steps
