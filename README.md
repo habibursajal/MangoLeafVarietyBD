@@ -105,6 +105,15 @@ The `Evaluation_Results/` directory contains per-model sub-folders with:
 * `Classification Reports.txt`: Precision, Recall, and F1-score for each class (calculated with 4-digit precision).
 * `training_logs.csv`: Raw data for all epochs (Training Loss/Acc, Validation Loss/Acc, Inference Time).
 
+
+## 📊 Tables and Figures
+
+The `Tables_and_Figures/` directory contains all tables and figures used in the manuscript of the MangoLeafVarietyBD dataset paper.  
+This includes visual examples of the dataset, directory structure, data preparation workflow, and sample augmented images used during model training.  
+
+A compiled document (`MangoLeafVarietyBD_Tables_and_Figures.docx`) is also provided for convenient access to all tables and figures in a single file.
+
+
 ## 🚀 Reproduction Steps
 1. **Download:** Get the raw images from [Mendeley Data Repository (V2)](https://doi.org/10.17632/hb3kvgfcvm.2).
 2. **Preprocess:** Sequential run of `01_Data_Preprocessing...` in Google Colab.
