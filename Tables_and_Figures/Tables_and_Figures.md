@@ -51,7 +51,7 @@ This document contains all tables and figures used in the manuscript.
 
 ## Fig. 1: Examples of Eight Distinct Types of Original Mango Leaf Images
 
-![Fig1](fig1_mango_leaf_classes.png)
+![Fig1](Tables_and_Figures/Fig. 1. Examples of eight distinct types of original mango leaf images included in the dataset..png)
 
 ---
 
