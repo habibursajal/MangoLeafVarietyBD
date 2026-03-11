@@ -51,25 +51,25 @@ This document contains all tables and figures used in the manuscript.
 
 ## Fig. 1: Examples of Eight Distinct Types of Original Mango Leaf Images
 
-![Fig1](Tables_and_Figures/Fig. 1. Examples of eight distinct types of original mango leaf images included in the dataset.png)
+![Fig1](Tables_and_Figures/Fig.%201.%20Examples%20of%20eight%20distinct%20types%20of%20original%20mango%20leaf%20images%20included%20in%20the%20dataset.png)
 
 ---
 
 ## Fig. 2: Structure of the Directory of the Dataset
 
-![Fig2](Tables_and_Figures/Fig. 2. Structure of the directory of the dataset.png)
+![Fig2](Tables_and_Figures/Fig.%202.%20Structure%20of%20the%20directory%20of%20the%20dataset.png)
 
 ---
 
 ## Fig. 3: Flowchart Showing the Data Preparation Steps
 
-![Fig3](Tables_and_Figures/Fig. 3. Flowchart showing the data preparation steps.png)
+![Fig3](Tables_and_Figures/Fig.%203.%20Flowchart%20showing%20the%20data%20preparation%20steps.png)
 
 ---
 
 ## Fig. 4: Sample of Augmented Images of MangoLeafVarietyBD Dataset (for Experimental Model Training)
 
-![Fig4](Tables_and_Figures/Fig. 4. Sample of augmented images of MangoLeafVarietyBD Dataset (for Experimental Model Training).png)
+![Fig4](Tables_and_Figures/Fig.%204.%20Sample%20of%20augmented%20images%20of%20MangoLeafVarietyBD%20Dataset%20%28for%20Experimental%20Model%20Training%29.png)
 
 ---
 
@@ -77,11 +77,11 @@ This document contains all tables and figures used in the manuscript.
 
 | (a) ViT-B16 | (b) DenseNet121 |
 | :---------: | :-------------: |
-| ![Fig5a](fig5a_confusion_matrix_vit.png) | ![Fig5b](fig5b_confusion_matrix_densenet.png) |
+| ![Fig5a](Tables_and_Figures/Fig.%205a.%20Confusion%20Matrix%20ViT-B16.png) | ![Fig5b](Tables_and_Figures/Fig.%205b.%20Confusion%20Matrix%20DenseNet121.png) |
 
 | (c) GhostNetV2 | (d) ResNet18 |
 | :-------------: | :-----------: |
-| ![Fig5c](fig5c_confusion_matrix_ghostnet.png) | ![Fig5d](fig5d_confusion_matrix_resnet.png) |
+| ![Fig5c](Tables_and_Figures/Fig.%205c.%20Confusion%20Matrix%20GhostNetV2.png) | ![Fig5d](Tables_and_Figures/Fig.%205d.%20Confusion%20Matrix%20ResNet18.png) |
 
 ---
 
@@ -89,8 +89,8 @@ This document contains all tables and figures used in the manuscript.
 
 | (a) ViT-B16 | (b) DenseNet121 |
 | :---------: | :-------------: |
-| ![Fig6a](fig6a_training_curves_vit.png) | ![Fig6b](fig6b_training_curves_densenet.png) |
+| ![Fig6a](Tables_and_Figures/Fig.%206a.%20Training%20Curves%20ViT-B16.png) | ![Fig6b](Tables_and_Figures/Fig.%206b.%20Training%20Curves%20DenseNet121.png) |
 
 | (c) GhostNetV2 | (d) ResNet18 |
 | :-------------: | :-----------: |
-| ![Fig6c](fig6c_training_curves_ghostnet.png) | ![Fig6d](fig6d_training_curves_resnet.png) |
+| ![Fig6c](Tables_and_Figures/Fig.%206c.%20Training%20Curves%20GhostNetV2.png) | ![Fig6d](Tables_and_Figures/Fig.%206d.%20Training%20Curves%20ResNet18.png) |
